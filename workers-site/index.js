@@ -1,67 +1,47 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
-
 /**
- * The DEBUG flag will do two things:
- * 1. We will skip caching on the edge, which makes it easier to debug
- * 2. We will return an error message on exception in your Response
+ * Simple worker script for Cloudflare Workers
  */
-const DEBUG = false;
 
-/**
- * Handle requests to your domain
- */
-addEventListener('fetch', (event) => {
-  try {
-    event.respondWith(handleEvent(event));
-  } catch (e) {
-    if (DEBUG) {
-      return event.respondWith(
-        new Response(e.message || e.toString(), {
-          status: 500,
-        })
-      );
-    }
-    event.respondWith(new Response('Internal Error', { status: 500 }));
-  }
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request));
 });
 
-/**
- * Handle fetch events
- * @param {FetchEvent} event
- */
-async function handleEvent(event) {
-  const url = new URL(event.request.url);
-  let options = {};
+async function handleRequest(request) {
+  // Get the URL from the request
+  const url = new URL(request.url);
 
-  try {
-    // Get the static asset from KV
-    const page = await getAssetFromKV(event, options);
-
-    // Allow headers to be altered
-    const response = new Response(page.body, page);
-
-    response.headers.set('X-XSS-Protection', '1; mode=block');
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('X-Frame-Options', 'DENY');
-    response.headers.set('Referrer-Policy', 'unsafe-url');
-    response.headers.set('Feature-Policy', 'none');
-
-    return response;
-  } catch (e) {
-    // If an error is thrown try to serve the asset at 404.html
-    if (!DEBUG) {
-      try {
-        const notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: (req) => new Request(`${new URL(req.url).origin}/404.html`, req),
-        });
-
-        return new Response(notFoundResponse.body, {
-          ...notFoundResponse,
-          status: 404,
-        });
-      } catch (e) {}
+  // Return a simple response
+  return new Response(`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next.js + Sanity Blog</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
     }
-
-    return new Response(e.message || e.toString(), { status: 500 });
-  }
+    h1 { color: #0070f3; }
+    a { color: #0070f3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Next.js + Sanity Blog</h1>
+  <p>This is a placeholder page for your blog. Your actual site is being deployed.</p>
+  <p>Please check the Cloudflare dashboard for your actual site URL.</p>
+  <p>For better results, consider using <a href="https://pages.cloudflare.com/">Cloudflare Pages</a> for your Next.js application.</p>
+</body>
+</html>`, {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+    },
+  });
 }

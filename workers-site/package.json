@@ -1,11 +1,8 @@
 {
   "name": "workers-site",
   "version": "1.0.0",
-  "description": "Worker script for Cloudflare Pages",
+  "description": "Simple worker script for Cloudflare",
   "main": "index.js",
   "author": "Cloudflare Workers Team",
-  "license": "MIT",
-  "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.3.0"
-  }
+  "license": "MIT"
 }

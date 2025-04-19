@@ -4,30 +4,9 @@ main = "workers-site/index.js"
 account_id = "4aba88032362cabbf59b788550001d47"
 
 [build]
-command = "npm install && chmod +x build.sh && ./build.sh && chmod +x install-worker-deps.sh && ./install-worker-deps.sh"
-
-[site]
-  bucket = "./nextjs-app/.next"
+command = "npm install && chmod +x build.sh && ./build.sh"
 
 [vars]
   NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
   NEXT_PUBLIC_SANITY_DATASET = "production"
   NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
-
-[env.production]
-  name = "blog-production"
-  route = "*blog.youqaria.com/*"
-
-  [env.production.vars]
-    NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
-    NEXT_PUBLIC_SANITY_DATASET = "production"
-    NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
-
-[env.staging]
-  name = "blog-staging"
-  route = "*staging.blog.youqaria.com/*"
-
-  [env.staging.vars]
-    NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
-    NEXT_PUBLIC_SANITY_DATASET = "production"
-    NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
