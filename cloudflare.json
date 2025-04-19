@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "type": "webpack",
+  "account_id": "your-account-id",
+  "zone_id": "your-zone-id",
+  "workers_dev": true,
+  "route": "",
+  "webpack_config": "webpack.config.js",
+  "private": false,
+  "env": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "6y69uwke",
+    "NEXT_PUBLIC_SANITY_DATASET": "production",
+    "NEXT_PUBLIC_SANITY_API_VERSION": "2024-10-28"
+  }
+}

@@ -1,11 +1,19 @@
 name = "blog"
+type = "javascript"
 compatibility_date = "2025-04-19"
+main = "workers-site/index.js"
+account_id = "your-account-id"
 
 [build]
 command = "npm install && chmod +x build.sh && ./build.sh"
 
 [site]
   bucket = "./nextjs-app/.next"
+
+[vars]
+  NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
+  NEXT_PUBLIC_SANITY_DATASET = "production"
+  NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
 
 [env.production]
   name = "blog-production"
