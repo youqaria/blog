@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "type": "webpack",
-  "account_id": "your-account-id",
+  "account_id": "4aba88032362cabbf59b788550001d47",
   "zone_id": "your-zone-id",
   "workers_dev": true,
   "route": "",
