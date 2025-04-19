@@ -1,5 +1,6 @@
 name = "blog"
 compatibility_date = "2025-04-19"
+main = "nextjs-app/adapter.js"
 
 [build]
 command = "npm install && npm run build"
@@ -23,12 +24,30 @@ command = "npm install && npm run build"
 
 [site]
   bucket = "./nextjs-app/.next/static"
-  entry-point = "./nextjs-app"
+
+[vars]
+  NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
+  NEXT_PUBLIC_SANITY_DATASET = "production"
+  NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
+
+# Secrets that should be set using wrangler secret commands or in the Cloudflare dashboard
+# [vars]
+#   SANITY_API_READ_TOKEN
 
 [env.production]
   name = "blog-production"
   route = "*blog.youqaria.com/*"
 
+  [env.production.vars]
+    NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
+    NEXT_PUBLIC_SANITY_DATASET = "production"
+    NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
+
 [env.staging]
   name = "blog-staging"
   route = "*staging.blog.youqaria.com/*"
+
+  [env.staging.vars]
+    NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
+    NEXT_PUBLIC_SANITY_DATASET = "production"
+    NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"

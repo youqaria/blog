@@ -6,6 +6,10 @@ base_directory = "."
 [build.environment]
 NODE_VERSION = "22"
 NPM_VERSION = "10"
+NEXT_PUBLIC_SANITY_PROJECT_ID = "6y69uwke"
+NEXT_PUBLIC_SANITY_DATASET = "production"
+NEXT_PUBLIC_SANITY_API_VERSION = "2024-10-28"
+SANITY_API_READ_TOKEN = "skAVYRZmzigqDoeaqjvuY9R7NNBdfROI59gxjQUHW6HsUriJvik8VW0kliSvczWQyS7f59zHvtGPaOPqxm2ThhYmhZ6B4aqirGTYjLkM8fukXmlPjAfphItKUeHwrdOTvlka57M7sYsDnJHtCrIT8PM3xpN6KDziLZm6DoWhksIkwclmKyXd"
 
 [site]
 functions = "nextjs-app/.next/server/pages"
