@@ -1,0 +1,34 @@
+name = "blog"
+compatibility_date = "2025-04-19"
+
+[build]
+command = "npm install && npm run build"
+
+[build.processing]
+  skip_source_maps = true
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  minify = true
+
+[build.processing.images]
+  compress = true
+
+[site]
+  bucket = "./nextjs-app/.next/static"
+  entry-point = "./nextjs-app"
+
+[env.production]
+  name = "blog-production"
+  route = "*blog.youqaria.com/*"
+
+[env.staging]
+  name = "blog-staging"
+  route = "*staging.blog.youqaria.com/*"

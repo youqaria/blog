@@ -1,0 +1,21 @@
+[build]
+command = "npm install && npm run build"
+output_directory = "nextjs-app/.next"
+base_directory = "."
+
+[build.environment]
+NODE_VERSION = "22"
+NPM_VERSION = "10"
+
+[site]
+functions = "nextjs-app/.next/server/pages"
+
+[routes]
+  # Serve all static files from the static directory
+  "/_next/static/*" = { type = "static", path = "nextjs-app/.next/static/*" }
+
+  # Handle Next.js API routes
+  "/api/*" = { type = "function", pattern = "/api/*" }
+
+  # Handle all other routes with the default function
+  "/*" = { type = "function", pattern = "/*" }
