@@ -4,7 +4,7 @@ main = "workers-site/index.js"
 account_id = "4aba88032362cabbf59b788550001d47"
 
 [build]
-command = "npm install && chmod +x build.sh && ./build.sh"
+command = "npm install && chmod +x build.sh && ./build.sh && chmod +x install-worker-deps.sh && ./install-worker-deps.sh"
 
 [site]
   bucket = "./nextjs-app/.next"
