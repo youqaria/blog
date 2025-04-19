@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Set environment variables
+export NEXT_PUBLIC_SANITY_PROJECT_ID=6y69uwke
+export NEXT_PUBLIC_SANITY_DATASET=production
+export NEXT_PUBLIC_SANITY_API_VERSION=2024-10-28
+export SANITY_API_READ_TOKEN=skAVYRZmzigqDoeaqjvuY9R7NNBdfROI59gxjQUHW6HsUriJvik8VW0kliSvczWQyS7f59zHvtGPaOPqxm2ThhYmhZ6B4aqirGTYjLkM8fukXmlPjAfphItKUeHwrdOTvlka57M7sYsDnJHtCrIT8PM3xpN6KDziLZm6DoWhksIkwclmKyXd
+
+# Run the build
+cd nextjs-app
+npm run typegen
+next build
